@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Matatu Route Intelligence — Live Dashboard</title>
+<meta name="description" content="Real-time Nairobi matatu transit monitoring dashboard">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Animated background orbs -->
+<div class="bg-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+</div>
+
+<!-- Floating particles -->
+<canvas id="particles"></canvas>
+
+<header id="main-header">
+  <div class="header-left">
+    <div class="logo-mark">
+      <span class="logo-icon">🚐</span>
+      <div class="logo-pulse"></div>
+    </div>
+    <div class="logo-text">
+      <h1>Matatu<span class="accent">AI</span></h1>
+      <p class="tagline">Route Intelligence · Nairobi</p>
+    </div>
+  </div>
+  <div class="header-center">
+    <div class="live-indicator">
+      <span class="live-dot"></span>
+      <span class="live-text">LIVE</span>
+    </div>
+    <div class="clock" id="clock">--:--:-- EAT</div>
+  </div>
+  <div class="header-right">
+    <div class="shortcode-badge">
+      <span class="shortcode-label">SMS</span>
+      <span class="shortcode-num">20880</span>
+    </div>
+  </div>
+</header>
+
+<!-- AI Signage Parallax Strip -->
+<section class="signage-strip" id="signage-strip">
+  <div class="signage-track">
+    <div class="signage-tile" data-kenburns="zoom-in">
+      <div class="tile-loader"><div class="tile-spinner"></div></div>
+      <div class="tile-img" style="background-image:url('img/amboseli.png')"></div>
+      <div class="tile-overlay">
+        <span class="tile-tag">AMBOSELI</span>
+        <span class="tile-sub">Elephants · Kilimanjaro</span>
+      </div>
+    </div>
+    <div class="signage-tile" data-kenburns="pan-right">
+      <div class="tile-loader"><div class="tile-spinner"></div></div>
+      <div class="tile-img" style="background-image:url('img/nairobi.png')"></div>
+      <div class="tile-overlay">
+        <span class="tile-tag">NAIROBI TECH</span>
+        <span class="tile-sub">Silicon Savannah</span>
+      </div>
+    </div>
+    <div class="signage-tile" data-kenburns="zoom-out">
+      <div class="tile-loader"><div class="tile-spinner"></div></div>
+      <div class="tile-img" style="background-image:url('img/lions.png')"></div>
+      <div class="tile-overlay">
+        <span class="tile-tag">MAASAI MARA</span>
+        <span class="tile-sub">Big Five · Safari</span>
+      </div>
+    </div>
+    <div class="signage-tile" data-kenburns="pan-left">
+      <div class="tile-loader"><div class="tile-spinner"></div></div>
+      <div class="tile-img" style="background-image:url('img/diani.png')"></div>
+      <div class="tile-overlay">
+        <span class="tile-tag">DIANI BEACH</span>
+        <span class="tile-sub">Coastal Paradise</span>
+      </div>
+    </div>
+    <div class="signage-tile" data-kenburns="zoom-in">
+      <div class="tile-loader"><div class="tile-spinner"></div></div>
+      <div class="tile-img" style="background-image:url('img/gdg.png')"></div>
+      <div class="tile-overlay">
+        <span class="tile-tag">GDG AGENTATHON</span>
+        <span class="tile-sub">Nairobi 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Row -->
+<section class="stats-row" id="stats-row">
+  <div class="stat-card" data-stat="reports">
+    <div class="stat-icon">📡</div>
+    <div class="stat-content">
+      <div class="stat-value" id="stat-reports">0</div>
+      <div class="stat-label">Active Reports</div>
+    </div>
+    <div class="stat-trend up">↑ Live</div>
+  </div>
+  <div class="stat-card" data-stat="messages">
+    <div class="stat-icon">💬</div>
+    <div class="stat-content">
+      <div class="stat-value" id="stat-messages">0</div>
+      <div class="stat-label">Messages Today</div>
+    </div>
+    <div class="stat-trend neutral">—</div>
+  </div>
+  <div class="stat-card" data-stat="critical">
+    <div class="stat-icon">🚨</div>
+    <div class="stat-content">
+      <div class="stat-value" id="stat-critical">0</div>
+      <div class="stat-label">Critical Alerts</div>
+    </div>
+    <div class="stat-trend down">✓ Clear</div>
+  </div>
+  <div class="stat-card" data-stat="latency">
+    <div class="stat-icon">⚡</div>
+    <div class="stat-content">
+      <div class="stat-value" id="stat-latency">--</div>
+      <div class="stat-label">Avg Response (ms)</div>
+    </div>
+    <div class="stat-trend neutral">—</div>
+  </div>
+</section>
+
+<!-- Main Grid -->
+<main class="main-grid">
+
+  <!-- Live Reports -->
+  <section class="card card-reports" id="card-reports">
+    <div class="card-chrome">
+      <div class="card-title">
+        <span class="card-icon">📡</span>
+        <h2>Live Reports</h2>
+      </div>
+      <span class="card-badge" id="report-count">0 active</span>
+    </div>
+    <div class="card-body scrollable" id="reports-feed">
+      <div class="empty-state">
+        <div class="empty-icon">🛰️</div>
+        <p>Listening for crowd-sourced reports...</p>
+        <p class="empty-sub">Real-time transit data appears here</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SMS Simulator -->
+  <section class="card card-simulator">
+    <div class="card-chrome">
+      <div class="card-title">
+        <span class="card-icon">🧪</span>
+        <h2>SMS Simulator</h2>
+      </div>
+      <span class="card-badge dev">DEV</span>
+    </div>
+    <div class="card-body">
+      <div class="sim-phone-frame">
+        <div class="sim-screen">
+          <div class="sim-header-bar">
+            <span>📶</span><span class="sim-time" id="sim-time">--:--</span><span>🔋</span>
+          </div>
+          <div class="sim-chat" id="sim-chat">
+            <div class="sim-msg system">
+              <p>Send an SMS to <strong>20880</strong> to test the Matatu AI agent</p>
+            </div>
+          </div>
+          <div class="sim-input-bar">
+            <input type="text" id="sim-text" placeholder="Type your SMS..." autocomplete="off">
+            <button id="sim-btn" onclick="simulateSms()" aria-label="Send SMS">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="quick-prompts">
+        <button class="qp" onclick="quickSend('How do I get from CBD to Westlands?')">CBD→Westlands</button>
+        <button class="qp" onclick="quickSend('Route 105')">Rt 105</button>
+        <button class="qp" onclick="quickSend('Heavy jam at Kangemi')">Report Jam</button>
+        <button class="qp" onclick="quickSend('Bei ya mat CBD to Karen?')">Fare Check</button>
+        <button class="qp" onclick="quickSend('Wizi reported Eastleigh stage')">Safety Alert</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Intent Distribution -->
+  <section class="card card-intents">
+    <div class="card-chrome">
+      <div class="card-title"><span class="card-icon">🧠</span><h2>Intent Distribution</h2></div>
+    </div>
+    <div class="card-body">
+      <div class="intent-bars" id="intent-bars">
+        <div class="intent-row"><span class="intent-name">ROUTE_QUERY</span><div class="intent-bar-track"><div class="intent-bar route" style="width:0%"></div></div><span class="intent-pct">0</span></div>
+        <div class="intent-row"><span class="intent-name">LIVE_REPORT</span><div class="intent-bar-track"><div class="intent-bar report" style="width:0%"></div></div><span class="intent-pct">0</span></div>
+        <div class="intent-row"><span class="intent-name">FARE_CHECK</span><div class="intent-bar-track"><div class="intent-bar fare" style="width:0%"></div></div><span class="intent-pct">0</span></div>
+        <div class="intent-row"><span class="intent-name">SAFETY_ALERT</span><div class="intent-bar-track"><div class="intent-bar safety" style="width:0%"></div></div><span class="intent-pct">0</span></div>
+        <div class="intent-row"><span class="intent-name">UNKNOWN</span><div class="intent-bar-track"><div class="intent-bar unknown" style="width:0%"></div></div><span class="intent-pct">0</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Message Log -->
+  <section class="card card-log" id="card-log">
+    <div class="card-chrome">
+      <div class="card-title"><span class="card-icon">📋</span><h2>Message Log</h2></div>
+      <span class="card-badge" id="log-count">0 entries</span>
+    </div>
+    <div class="card-body scrollable" id="message-log">
+      <div class="empty-state">
+        <div class="empty-icon">📝</div>
+        <p>No messages yet</p>
+        <p class="empty-sub">SMS interactions will stream here</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Matatu Route Intelligence Agent · GDG Nairobi Agentathon 2026 · Powered by Gemini 2.5 Pro + Africa's Talking + Supabase</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
