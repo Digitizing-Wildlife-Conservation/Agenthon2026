@@ -1,0 +1,44 @@
+{
+  "name": "matatu-route-intelligence-agent",
+  "version": "1.0.0",
+  "description": "Decentralized Nairobi transit routing agent powered by Gemini 2.5 Pro, Africa's Talking SMS, and Supabase",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node scripts/seed-routes.js",
+    "test": "node --test tests/",
+    "simulate": "node scripts/simulate-sms.js"
+  },
+  "keywords": [
+    "matatu",
+    "nairobi",
+    "transit",
+    "sms",
+    "gemini",
+    "vertex-ai",
+    "africastalking",
+    "supabase",
+    "gdg-nairobi"
+  ],
+  "author": "GDG Nairobi Agentathon 2026",
+  "license": "MIT",
+  "dependencies": {
+    "africastalking": "^0.7.0",
+    "@google-cloud/vertexai": "^1.9.0",
+    "@supabase/supabase-js": "^2.49.0",
+    "express": "^4.21.0",
+    "dotenv": "^16.4.0",
+    "helmet": "^8.0.0",
+    "cors": "^2.8.5",
+    "morgan": "^1.10.0",
+    "express-rate-limit": "^7.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
