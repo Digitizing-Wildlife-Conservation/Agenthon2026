@@ -10,19 +10,19 @@
   --font: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  /* Light transparent palette */
-  --bg: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 30%, #fce4ec 60%, #fff3e0 100%);
-  --glass: rgba(255, 255, 255, 0.55);
-  --glass-strong: rgba(255, 255, 255, 0.75);
-  --glass-hover: rgba(255, 255, 255, 0.85);
-  --border: rgba(255, 255, 255, 0.6);
-  --border-subtle: rgba(0, 0, 0, 0.06);
-  --shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-  --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.1);
+  /* Decode-inspired Hybrid Palette */
+  --bg: radial-gradient(circle at top right, #0e2612, #040a05 100%);
+  --glass: rgba(249, 249, 249, 0.95); /* Clean, bright off-white cards */
+  --glass-strong: rgba(255, 255, 255, 0.98);
+  --glass-hover: #ffffff;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-subtle: rgba(0, 0, 0, 0.04);
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  --shadow-hover: 0 24px 50px rgba(0, 0, 0, 0.35);
 
-  /* Vibrant accents */
-  --emerald: #06d6a0;
-  --emerald-bg: rgba(6, 214, 160, 0.12);
+  /* Vibrant tech accents (Safaricom-esque Green) */
+  --emerald: #00A859; 
+  --emerald-bg: rgba(0, 168, 89, 0.12);
   --sky: #0ea5e9;
   --sky-bg: rgba(14, 165, 233, 0.12);
   --rose: #f43f5e;
@@ -31,15 +31,17 @@
   --amber-bg: rgba(245, 158, 11, 0.12);
   --violet: #8b5cf6;
   --violet-bg: rgba(139, 92, 246, 0.1);
-  --slate: #334155;
-  --muted: #64748b;
-  --light-muted: #94a3b8;
+  
+  /* Text colors for light cards */
+  --slate: #1F2937; /* Deep charcoal for high contrast */
+  --muted: #4B5563;
+  --light-muted: #9CA3AF;
 
-  /* Orb colors */
-  --orb1: rgba(6, 214, 160, 0.25);
-  --orb2: rgba(14, 165, 233, 0.2);
-  --orb3: rgba(244, 63, 94, 0.15);
-  --orb4: rgba(139, 92, 246, 0.18);
+  /* Glowing Orb colors (Tech Green/Blue) */
+  --orb1: rgba(0, 168, 89, 0.2);
+  --orb2: rgba(14, 165, 233, 0.15);
+  --orb3: rgba(0, 168, 89, 0.1);
+  --orb4: rgba(14, 165, 233, 0.12);
 }
 
 html { scroll-behavior: smooth; }
@@ -108,8 +110,8 @@ header {
 }
 
 .logo-text h1 {
-  font-size: 1.25rem; font-weight: 800; color: var(--slate);
-  letter-spacing: -0.02em; line-height: 1.1;
+  font-size: 1.35rem; font-weight: 800; color: var(--slate);
+  letter-spacing: -0.03em; line-height: 1.1;
 }
 .logo-text .accent {
   background: linear-gradient(135deg, var(--emerald), var(--sky));
@@ -152,7 +154,7 @@ header {
 
 .stat-card {
   display: flex; align-items: center; gap: 0.8rem;
-  padding: 1rem 1.2rem; border-radius: 18px;
+  padding: 1.2rem 1.4rem; border-radius: 24px; /* Soft human organic corners */
   background: var(--glass); backdrop-filter: blur(16px);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
@@ -195,7 +197,7 @@ header {
 
 /* ─── Cards ─── */
 .card {
-  border-radius: 22px;
+  border-radius: 32px; /* Decode massive corner radii */
   background: var(--glass);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -219,13 +221,13 @@ header {
 
 .card-chrome {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 1rem 1.4rem;
+  padding: 1.2rem 1.6rem;
   border-bottom: 1px solid var(--border-subtle);
-  background: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.4);
 }
-.card-title { display: flex; align-items: center; gap: 0.5rem; }
-.card-icon { font-size: 1.1rem; }
-.card-title h2 { font-size: 0.9rem; font-weight: 700; color: var(--slate); }
+.card-title { display: flex; align-items: center; gap: 0.6rem; }
+.card-icon { font-size: 1.2rem; }
+.card-title h2 { font-size: 1.1rem; font-weight: 800; color: var(--slate); letter-spacing: -0.02em; }
 
 .card-badge {
   font-size: 0.6rem; font-weight: 700; padding: 3px 10px;
@@ -282,16 +284,16 @@ header {
 /* ─── SMS Simulator (Phone Frame) ─── */
 .sim-phone-frame {
   max-width: 340px; margin: 0 auto;
-  border-radius: 28px; overflow: hidden;
-  background: linear-gradient(145deg, #1a1a2e, #16213e);
-  padding: 6px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.05);
+  border-radius: 40px; overflow: hidden;
+  background: #111827;
+  padding: 8px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 .sim-screen {
-  border-radius: 22px; overflow: hidden;
-  background: #f8fafc;
+  border-radius: 34px; overflow: hidden;
+  background: #f4f5f6;
   display: flex; flex-direction: column;
-  height: 320px;
+  height: 340px;
 }
 .sim-header-bar {
   display: flex; justify-content: space-between; align-items: center;
@@ -416,7 +418,7 @@ footer {
   flex: 1 1 180px;
   max-width: 240px;
   height: 160px;
-  border-radius: 22px;
+  border-radius: 32px; /* Soft organic corners */
   position: relative;
   overflow: hidden;
   background: var(--glass);
