@@ -10,38 +10,38 @@
   --font: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  /* Decode-inspired Hybrid Palette */
-  --bg: radial-gradient(circle at top right, #0e2612, #040a05 100%);
-  --glass: rgba(249, 249, 249, 0.95); /* Clean, bright off-white cards */
-  --glass-strong: rgba(255, 255, 255, 0.98);
+  /* True Safaricom Decode Hybrid Palette */
+  --bg: #edf5f0; /* Soft pastel green-grey background */
+  --glass: #ffffff; /* Solid flat white cards */
+  --glass-strong: rgba(255, 255, 255, 0.95);
   --glass-hover: #ffffff;
-  --border: rgba(0, 0, 0, 0.08);
-  --border-subtle: rgba(0, 0, 0, 0.04);
-  --shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
-  --shadow-hover: 0 24px 50px rgba(0, 0, 0, 0.35);
+  --border: rgba(0, 168, 89, 0.15); /* Subtle Safaricom green border */
+  --border-subtle: rgba(0, 168, 89, 0.05);
+  --shadow: 0 10px 30px rgba(0, 168, 89, 0.06);
+  --shadow-hover: 0 16px 40px rgba(0, 168, 89, 0.15);
 
-  /* Vibrant tech accents (Safaricom-esque Green) */
-  --emerald: #00A859; 
+  /* Safaricom Decode Accents */
+  --emerald: #00A859; /* Kelly Green */
   --emerald-bg: rgba(0, 168, 89, 0.12);
-  --sky: #0ea5e9;
-  --sky-bg: rgba(14, 165, 233, 0.12);
-  --rose: #f43f5e;
-  --rose-bg: rgba(244, 63, 94, 0.1);
+  --sky: #00A3E0; /* Safaricom Cyan */
+  --sky-bg: rgba(0, 163, 224, 0.12);
+  --rose: #FF0000; /* Decode Red */
+  --rose-bg: rgba(255, 0, 0, 0.1);
   --amber: #f59e0b;
   --amber-bg: rgba(245, 158, 11, 0.12);
   --violet: #8b5cf6;
   --violet-bg: rgba(139, 92, 246, 0.1);
   
-  /* Text colors for light cards */
-  --slate: #1F2937; /* Deep charcoal for high contrast */
-  --muted: #4B5563;
-  --light-muted: #9CA3AF;
+  /* Text colors for high legibility */
+  --slate: #1A1A1A; /* Very dark charcoal headers */
+  --muted: #4A4A4A;
+  --light-muted: #888888;
 
-  /* Glowing Orb colors (Tech Green/Blue) */
-  --orb1: rgba(0, 168, 89, 0.2);
-  --orb2: rgba(14, 165, 233, 0.15);
-  --orb3: rgba(0, 168, 89, 0.1);
-  --orb4: rgba(14, 165, 233, 0.12);
+  /* Glowing Orb colors */
+  --orb1: rgba(0, 168, 89, 0.15);
+  --orb2: rgba(0, 163, 224, 0.1);
+  --orb3: rgba(0, 230, 118, 0.15); /* Neon glow */
+  --orb4: rgba(255, 0, 0, 0.05);
 }
 
 html { scroll-behavior: smooth; }
@@ -223,7 +223,7 @@ header {
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.2rem 1.6rem;
   border-bottom: 1px solid var(--border-subtle);
-  background: rgba(255,255,255,0.4);
+  background: transparent;
 }
 .card-title { display: flex; align-items: center; gap: 0.6rem; }
 .card-icon { font-size: 1.2rem; }
@@ -253,14 +253,15 @@ header {
 /* ─── Live Reports ─── */
 .report-item {
   padding: 0.9rem 1rem; border-radius: 14px; margin-bottom: 0.6rem;
-  background: rgba(255,255,255,0.5); border: 1px solid var(--border-subtle);
+  background: #ffffff; border: 1px solid var(--border-subtle);
   border-left: 4px solid var(--light-muted);
   transition: all 0.25s ease;
   animation: reportSlide 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 4px 12px rgba(0, 168, 89, 0.02);
 }
 @keyframes reportSlide { from { opacity:0; transform: translateX(-12px); } to { opacity:1; transform: translateX(0); } }
 
-.report-item:hover { background: rgba(255,255,255,0.8); transform: translateX(3px); }
+.report-item:hover { background: #fdfdfd; transform: translateX(3px); border-color: rgba(0, 168, 89, 0.2); box-shadow: 0 6px 16px rgba(0, 168, 89, 0.06); }
 .report-item.critical { border-left-color: var(--rose); }
 .report-item.high { border-left-color: var(--amber); }
 .report-item.medium { border-left-color: var(--sky); }
@@ -287,18 +288,19 @@ header {
   border-radius: 40px; overflow: hidden;
   background: #111827;
   padding: 8px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+  box-shadow: 0 12px 40px rgba(0, 168, 89, 0.15), inset 0 1px 0 rgba(255,255,255,0.1);
 }
 .sim-screen {
   border-radius: 34px; overflow: hidden;
-  background: #f4f5f6;
+  background: #ffffff;
   display: flex; flex-direction: column;
   height: 340px;
 }
 .sim-header-bar {
   display: flex; justify-content: space-between; align-items: center;
   padding: 6px 14px; font-size: 0.65rem; color: var(--muted);
-  background: rgba(255,255,255,0.8);
+  background: #fdfdfd;
+  border-bottom: 1px solid var(--border-subtle);
 }
 .sim-chat {
   flex: 1; overflow-y: auto; padding: 0.8rem;
@@ -306,19 +308,19 @@ header {
 }
 .sim-msg {
   max-width: 85%; padding: 0.6rem 0.8rem;
-  border-radius: 14px; font-size: 0.78rem; line-height: 1.4;
+  border-radius: 16px; font-size: 0.78rem; line-height: 1.4;
   animation: msgPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 @keyframes msgPop { from { opacity:0; transform: scale(0.9) translateY(8px); } to { opacity:1; transform: scale(1) translateY(0); } }
-.sim-msg.system { background: #e2e8f0; color: var(--slate); align-self: center; text-align: center; max-width: 90%; border-radius: 12px; }
-.sim-msg.user { background: linear-gradient(135deg, var(--sky), #3b82f6); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
-.sim-msg.agent { background: white; color: var(--slate); align-self: flex-start; border: 1px solid #e2e8f0; border-bottom-left-radius: 4px; }
+.sim-msg.system { background: #f0f4f2; color: var(--muted); align-self: center; text-align: center; max-width: 90%; border-radius: 12px; }
+.sim-msg.user { background: linear-gradient(135deg, var(--sky), #0077a3); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+.sim-msg.agent { background: #f9f9f9; color: var(--slate); align-self: flex-start; border: 1px solid var(--border-subtle); border-bottom-left-radius: 4px; }
 .sim-msg .msg-meta { font-size: 0.62rem; margin-top: 0.3rem; opacity: 0.7; }
 
 .sim-input-bar {
   display: flex; align-items: center; gap: 0.5rem;
   padding: 0.6rem 0.8rem;
-  border-top: 1px solid #e2e8f0; background: white;
+  border-top: 1px solid var(--border-subtle); background: #ffffff;
 }
 .sim-input-bar input {
   flex: 1; border: none; outline: none;
@@ -342,12 +344,13 @@ header {
   padding-top: 0.8rem;
 }
 .qp {
-  padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border-subtle);
-  background: rgba(255,255,255,0.6); color: var(--muted); font-size: 0.68rem;
+  padding: 6px 14px; border-radius: 50px; border: 1px solid var(--border-subtle);
+  background: #ffffff; color: var(--muted); font-size: 0.68rem;
   font-family: var(--font); font-weight: 600; cursor: pointer;
   transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
 }
-.qp:hover { background: var(--sky-bg); color: var(--sky); border-color: rgba(14, 165, 233, 0.3); transform: translateY(-1px); }
+.qp:hover { background: var(--sky-bg); color: var(--sky); border-color: rgba(0, 163, 224, 0.3); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 163, 224, 0.1); }
 
 /* ─── Intent Distribution ─── */
 .intent-bars { display: flex; flex-direction: column; gap: 0.7rem; }
@@ -366,14 +369,15 @@ header {
 .log-item {
   display: grid; grid-template-columns: auto 1fr auto;
   align-items: center; gap: 0.8rem;
-  padding: 0.6rem 0.8rem; border-radius: 10px;
-  margin-bottom: 0.4rem; background: rgba(255,255,255,0.4);
-  border: 1px solid transparent;
+  padding: 0.8rem 1rem; border-radius: 16px;
+  margin-bottom: 0.5rem; background: #ffffff;
+  border: 1px solid var(--border-subtle);
   transition: all 0.2s; font-size: 0.78rem;
   animation: logSlide 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.01);
 }
 @keyframes logSlide { from { opacity:0; transform: translateY(-6px); } to { opacity:1; transform:translateY(0); } }
-.log-item:hover { background: rgba(255,255,255,0.7); border-color: var(--border-subtle); }
+.log-item:hover { background: #fdfdfd; border-color: rgba(0, 168, 89, 0.15); box-shadow: 0 4px 12px rgba(0, 168, 89, 0.05); }
 
 .log-intent {
   font-family: var(--mono); font-size: 0.65rem; font-weight: 700;
@@ -476,7 +480,7 @@ footer {
 /* Preloader Shimmer */
 .tile-loader {
   position: absolute; inset: 0;
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #f9f9f9 25%, #f0f0f0 50%, #f9f9f9 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   z-index: 1;
